@@ -41,6 +41,10 @@ def main() -> int:
     if len(text.splitlines()) != 1:
         print("entry must be a single line", file=sys.stderr)
         return 1
+    if MESSAGE != MESSAGE.strip():
+        print("entry must not have leading or trailing whitespace",
+              file=sys.stderr)
+        return 1
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "entry.txt")
